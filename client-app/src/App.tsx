@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Header, Icon } from 'semantic-ui-react'
 import './App.css';
-import { cars } from './demo';
-import { CarItem } from './CarItem';
 import axios from 'axios';
 
 class App extends Component {
@@ -22,10 +20,13 @@ class App extends Component {
 	render() {
 
 		const {values} = this.state;
-		
 
 		return (
-			<div className="App">
+			<div>
+				<Header as='h2'>
+    				<Icon name='plug' />
+    				<Header.Content>Uptime Guarantee</Header.Content>
+  				</Header>
 				<ul>
 					{values.map((value: any) => <li key={value.id}>{ value.name }</li> )}
 				</ul>

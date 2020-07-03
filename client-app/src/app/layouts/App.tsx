@@ -1,31 +1,25 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { Header, Icon, Container } from 'semantic-ui-react'
-import axios from 'axios';
-import{ IActivity} from '../models/IActivity'
 import { NavBar } from '../../features/Navs/NavBar';
 import { ActivityDashboard } from '../../features/Actitivties/Dashboard/ActivityDashboard';
 
 
 
 const App = () => {
-
-	const [activities,setActivities] = useState<IActivity[]>([]);
-
-	useEffect(() => {
-		axios
-			.get<IActivity[]>('http://localhost:5000/api/activities')
-				.then((res) => {
-					setActivities(res.data);
-		});
-	}, []);
+	
+	const [isCreate,setIsCreate] = useState(false);
+	
 
 	
 
 	return (
 		<Fragment>
-			<NavBar />
-			<Container style={{marginTop: '7em'}}>
-				<ActivityDashboard activities={activities} />
+			<NavBar onButtonCreateClick={setIsCreate} />
+			<Container style={{ marginTop: '7em' }}>
+				<ActivityDashboard 
+					isCreateActivity={isCreate}
+					setIsCreateActivity={setIsCreate}
+					/>
 			</Container>
 		</Fragment>
 	)
